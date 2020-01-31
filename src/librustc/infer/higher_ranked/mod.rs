@@ -128,7 +128,7 @@ impl<'a, 'tcx> InferCtxt<'a, 'tcx> {
         placeholder_map: &PlaceholderMap<'tcx>,
         snapshot: &CombinedSnapshot<'_, 'tcx>,
     ) -> RelateResult<'tcx, ()> {
-        self.borrow_region_constraints().leak_check(
+        self.inner.borrow_mut().unwrap_region_constraints().leak_check(
             self.tcx,
             overly_polymorphic,
             placeholder_map,
